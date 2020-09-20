@@ -9,6 +9,12 @@ This repository includes code to optimize the hyperparameters of a Neural Networ
 
 The model tuned is a Multilayer Perceptron (MLP).
 
+## Usage
+The main script is "main.py". Try to run it using:
+```bash
+python main.py
+```
+
 ## Hyperparameters
 We tune the following hyperparameters:
 * <b>Number of nodes: </b> constant for every hidden layer with values in {8, 16, 32, 64}.
@@ -23,7 +29,7 @@ We try two crossover methods:
 Given the two parents, we select a random number between 1 and the number of genes that we will use as a cut-point. We select the first sub-sequence of genes, until the cut-point in the first parent, to constitute the first section of the crossover solution. Then, we add the second part of the second parent to the solution. This crossover technique is illustrated in the following figure:
 
 <p align="center">
-  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20cutpoint%201.png" width="500">
+  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20cutpoint%201.png" width="600">
 </p>
 
 * <b>Random section in the middle crossover:</b>
