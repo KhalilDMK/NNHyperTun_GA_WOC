@@ -2,36 +2,19 @@
 """
 Created on Sun Nov 11 14:00:34 2018
 
-@author: K0DAMA01
+@author: Khalil Damak
 """
 
 import time
 from tkinter import *
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
 from tkinter import messagebox
 from Code.Data import housing_dataset
 from Code.GA_utils import *
 from Code.WOC_utils import *
+from Code.GUI_utils import plot_evolution_over_time_in_gui
 
 
-# Method to plot the evolution over time in the GUI
-
-def plot_evolution_over_time_in_gui(error_over_time):
-    fig = Figure(figsize=(4.5, 3))
-    ax = fig.add_subplot(111)
-    ax.set_xlabel("Iteration")
-    ax.set_ylabel("Error")
-    for i in range(len(error_over_time)):
-        ax.plot(error_over_time[i])
-    graph = FigureCanvasTkAgg(fig, master=main_frame)
-    canvas = graph.get_tk_widget()
-    canvas.grid(row=1, column=3, rowspan=10, pady=5, sticky=E)
-    fig.canvas.draw_idle()
-    root.update()
-    return fig, ax
-
-# Main function
+# Main function: Hyperparameter tuning with GA and WOC
 
 def main():
     epochs = 3
@@ -143,7 +126,7 @@ def main():
 
             print('min costs over time: ' + str(avg))
             error_over_time.append(avg)
-            fig1, ax1 = plot_evolution_over_time_in_gui(error_over_time)
+            fig1, ax1 = plot_evolution_over_time_in_gui(error_over_time, main_frame, root)
 
             # Filling the result text box
 
@@ -161,70 +144,72 @@ def main():
         root.update()
 
 
-# Creating the GUI
+if __name__ == "__main__":
 
-root = Tk()
-root.geometry('850x500')
-root.title("Hyperparameter tuning with GA WOC")
+    # Creating the GUI
 
-main_frame = Frame(root)
+    root = Tk()
+    root.geometry('850x500')
+    root.title("Hyperparameter tuning with GA WOC")
 
-label_filename = Label(main_frame, text="File name")
-variable_filename = StringVar(main_frame)
-variable_filename.set("Boston housing prices")
-dropdown_filename = OptionMenu(main_frame, variable_filename, "Boston housing prices")
+    main_frame = Frame(root)
 
-label_population_size = Label(main_frame, text="Population size")
-entry_population_size = Entry(main_frame)
+    label_filename = Label(main_frame, text="File name")
+    variable_filename = StringVar(main_frame)
+    variable_filename.set("Boston housing prices")
+    dropdown_filename = OptionMenu(main_frame, variable_filename, "Boston housing prices")
 
-label_number_iterations = Label(main_frame, text="Number of iterations")
-entry_number_iterations = Entry(main_frame)
+    label_population_size = Label(main_frame, text="Population size")
+    entry_population_size = Entry(main_frame)
 
-label_number_solutions = Label(main_frame, text="Number of solutions to combine")
-entry_number_solutions = Entry(main_frame)
+    label_number_iterations = Label(main_frame, text="Number of iterations")
+    entry_number_iterations = Entry(main_frame)
 
-label_percentage_crossover = Label(main_frame, text="Percentage crossover")
-scale_percentage_crossover = Scale(main_frame, from_=1, to=100, orient=HORIZONTAL, length=250)
-scale_percentage_crossover.set(70)
+    label_number_solutions = Label(main_frame, text="Number of solutions to combine")
+    entry_number_solutions = Entry(main_frame)
 
-label_percentage_mutation = Label(main_frame, text="Percentage mutation")
-scale_percentage_mutation = Scale(main_frame, from_=0.01, to=5, orient=HORIZONTAL, digits=5, resolution=0.01,
-                                  length=250)
-scale_percentage_mutation.set(4)
+    label_percentage_crossover = Label(main_frame, text="Percentage crossover")
+    scale_percentage_crossover = Scale(main_frame, from_=1, to=100, orient=HORIZONTAL, length=250)
+    scale_percentage_crossover.set(70)
 
-label_crossover_method = Label(main_frame, text="Crossover method")
-variable_crossover_method = StringVar(main_frame)
-variable_crossover_method.set("Random cutpoint")
-dropdown_crossover_method = OptionMenu(main_frame, variable_crossover_method, "Random cutpoint",
-                                       "Random section in middle")
+    label_percentage_mutation = Label(main_frame, text="Percentage mutation")
+    scale_percentage_mutation = Scale(main_frame, from_=0.01, to=5, orient=HORIZONTAL, digits=5, resolution=0.01,
+                                      length=250)
+    scale_percentage_mutation.set(4)
 
-button = Button(main_frame, text="Solve", command=main)
+    label_crossover_method = Label(main_frame, text="Crossover method")
+    variable_crossover_method = StringVar(main_frame)
+    variable_crossover_method.set("Random cutpoint")
+    dropdown_crossover_method = OptionMenu(main_frame, variable_crossover_method, "Random cutpoint",
+                                           "Random section in middle")
 
-label_iteration = Label(main_frame, text="Progress")
-progress_bar_iteration = Text(main_frame, height=1, width=15)
+    button = Button(main_frame, text="Solve", command=main)
 
-label_woc_solution = Label(main_frame, text="WOC solution")
-cost_time_text = Text(main_frame, height=5, width=60)
+    label_iteration = Label(main_frame, text="Progress")
+    progress_bar_iteration = Text(main_frame, height=1, width=15)
 
-main_frame.grid(row=0)
-label_filename.grid(row=1, column=0, sticky=E, pady=5)
-dropdown_filename.grid(row=1, column=1, pady=5, sticky=W)
-label_population_size.grid(row=2, column=0, sticky=E, pady=5)
-entry_population_size.grid(row=2, column=1, pady=5, sticky=W)
-label_number_iterations.grid(row=3, column=0, sticky=E, pady=5)
-entry_number_iterations.grid(row=3, column=1, pady=5, sticky=W)
-label_number_solutions.grid(row=4, column=0, sticky=E, pady=5)
-entry_number_solutions.grid(row=4, column=1, pady=5, sticky=W)
-label_crossover_method.grid(row=5, sticky=E, pady=5)
-dropdown_crossover_method.grid(row=5, column=1, pady=5, sticky=W)
-label_percentage_crossover.grid(row=6, column=0, sticky=E, pady=5)
-scale_percentage_crossover.grid(row=7, column=0, pady=5, sticky=W, columnspan=2)
-label_percentage_mutation.grid(row=8, column=0, sticky=E, pady=5)
-scale_percentage_mutation.grid(row=9, column=0, pady=5, sticky=W, columnspan=2)
-button.grid(row=10, column=1, pady=5, sticky=W)
-cost_time_text.grid(row=12, column=2, padx=5, pady=5, sticky=W, columnspan=2)
-label_iteration.grid(row=1, column=2, sticky=E, pady=5)
-progress_bar_iteration.grid(row=1, column=3, pady=5, sticky=W)
-label_woc_solution.grid(row=10, column=2, pady=5, columnspan=2)
+    label_woc_solution = Label(main_frame, text="WOC solution")
+    cost_time_text = Text(main_frame, height=5, width=60)
 
-root.mainloop()
+    main_frame.grid(row=0)
+    label_filename.grid(row=1, column=0, sticky=E, pady=5)
+    dropdown_filename.grid(row=1, column=1, pady=5, sticky=W)
+    label_population_size.grid(row=2, column=0, sticky=E, pady=5)
+    entry_population_size.grid(row=2, column=1, pady=5, sticky=W)
+    label_number_iterations.grid(row=3, column=0, sticky=E, pady=5)
+    entry_number_iterations.grid(row=3, column=1, pady=5, sticky=W)
+    label_number_solutions.grid(row=4, column=0, sticky=E, pady=5)
+    entry_number_solutions.grid(row=4, column=1, pady=5, sticky=W)
+    label_crossover_method.grid(row=5, sticky=E, pady=5)
+    dropdown_crossover_method.grid(row=5, column=1, pady=5, sticky=W)
+    label_percentage_crossover.grid(row=6, column=0, sticky=E, pady=5)
+    scale_percentage_crossover.grid(row=7, column=0, pady=5, sticky=W, columnspan=2)
+    label_percentage_mutation.grid(row=8, column=0, sticky=E, pady=5)
+    scale_percentage_mutation.grid(row=9, column=0, pady=5, sticky=W, columnspan=2)
+    button.grid(row=10, column=1, pady=5, sticky=W)
+    cost_time_text.grid(row=12, column=2, padx=5, pady=5, sticky=W, columnspan=2)
+    label_iteration.grid(row=1, column=2, sticky=E, pady=5)
+    progress_bar_iteration.grid(row=1, column=3, pady=5, sticky=W)
+    label_woc_solution.grid(row=10, column=2, pady=5, columnspan=2)
+
+    root.mainloop()
