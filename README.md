@@ -23,7 +23,7 @@ We try two crossover methods:
 Given the two parents, we select a random number between 1 and the number of genes that we will use as a cut-point. We select the first sub-sequence of genes, until the cut-point in the first parent, to constitute the first section of the crossover solution. Then, we add the second part of the second parent to the solution. This crossover technique is illustrated in the following figure:
 
 <p align="center">
-  <img src="https://drive.google.com/file/d/1lqr1OzeD-fleY0JVtG299e-Kvm5j5B3b/view?usp=sharing" width="350" title="hover text">
+  <img src="Images/Random cutpoint 1" width="350" title="Random cut-point crossover">
 </p>
 
 ![alt text](https://drive.google.com/file/d/1lqr1OzeD-fleY0JVtG299e-Kvm5j5B3b/view?usp=sharing)
