@@ -26,4 +26,9 @@ Given the two parents, we select a random number between 1 and the number of gen
   <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20cutpoint%201.png">
 </p>
 
-![alt text](https://drive.google.com/file/d/1lqr1OzeD-fleY0JVtG299e-Kvm5j5B3b/view?usp=sharing)
+* <b>Random section in the middle crossover:</b>
+In this crossover technique, a sub-sequence of random length in the middle of the first parent is selected to go to the crossover child. Then, the first and third parts of the second parent are added to the solution. This technique is illustrated below:
+
+<p align="center">
+  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20section%20in%20middle%201.png">
+</p>
