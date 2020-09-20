@@ -18,21 +18,7 @@ from matplotlib.figure import Figure
 from tkinter import messagebox
 import collections
 import math
-
-
-# Method to get housing dataset and preprocess it
-
-def get_housing_dataset():
-    boston_housing = keras.datasets.boston_housing
-    (x_train, y_train), (x_test, y_test) = boston_housing.load_data()
-    order = np.argsort(np.random.random(y_train.shape))
-    x_train = x_train[order]
-    y_train = y_train[order]
-    mean = x_train.mean(axis=0)
-    std = x_train.std(axis=0)
-    x_train = (x_train - mean) / std
-    x_test = (x_test - mean) / std
-    return x_train, y_train, x_test, y_test
+from Code.Data import housing_dataset
 
 
 # Method to create a random solution
@@ -234,7 +220,8 @@ def main():
 
     filename = variable_filename.get()
     if filename == "Boston housing prices":
-        x_train, y_train, x_test, y_test = get_housing_dataset()
+        dataset = housing_dataset()
+        x_train, y_train, x_test, y_test = dataset.get_housing_dataset()
 
     # Getting population size
 
