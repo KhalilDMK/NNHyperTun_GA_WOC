@@ -23,12 +23,12 @@ We try two crossover methods:
 Given the two parents, we select a random number between 1 and the number of genes that we will use as a cut-point. We select the first sub-sequence of genes, until the cut-point in the first parent, to constitute the first section of the crossover solution. Then, we add the second part of the second parent to the solution. This crossover technique is illustrated in the following figure:
 
 <p align="center">
-  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20cutpoint%201.png" style="width:500px:">
+  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20cutpoint%201.png" style="width:50px:">
 </p>
 
 * <b>Random section in the middle crossover:</b>
 In this crossover technique, a sub-sequence of random length in the middle of the first parent is selected to go to the crossover child. Then, the first and third parts of the second parent are added to the solution. This technique is illustrated below:
 
 <p align="center">
-  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20section%20in%20middle%201.png" style="width:500px:">
+  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20section%20in%20middle%201.png" style="width:50px:">
 </p>
