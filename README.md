@@ -26,7 +26,7 @@ We tune the following hyperparameters:
 ## Crossover methods
 We try two crossover methods:
 * <b>Random cut-point crossover:</b>
-Given the two parents, we select a random number between 1 and the number of genes that we will use as a cut-point. We select the first sub-sequence of genes, until the cut-point in the first parent, to constitute the first section of the crossover solution. Then, we add the second part of the second parent to the solution. This crossover technique is illustrated in the following figure:
+Given the two parents, we select a random number between one and the number of genes that we will use as a cut-point. We select the first sub-sequence of genes, until the cut-point in the first parent, to constitute the first section of the crossover solution. Then, we add the second part of the second parent to the solution. This crossover technique is illustrated in the following figure:
 
 <p align="center">
   <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/Random%20cutpoint%201.png" width="600">
