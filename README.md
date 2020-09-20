@@ -10,7 +10,7 @@ This repository includes code to optimize the hyperparameters of a Neural Networ
 The model tuned is a Multilayer Perceptron (MLP).
 
 ## Usage
-The main script is "main.py". Try to run it using:
+The main script is "main.py". Run it using:
 ```bash
 python main.py
 ```
