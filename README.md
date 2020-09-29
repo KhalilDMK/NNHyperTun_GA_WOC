@@ -49,5 +49,5 @@ To find the WOC solution vector, we choose the hyperparameters with the highest 
 The GUI is implemented with Tkinter. It allows the user to tune the hyperparameters of the problem. The functionalities include choosing the dataset and tuning the following variables: population size, number of GA generations, number of WOC solutions to combine, crossover method, crossover rate and mutation rate. The GUI displays the evolution of the error function of the number of GA iterations after the creation of each solution, in addition to its error and the time the program took to run. The curve of each solution is displayed along with the former ones in order to compare. Below is an example of a solution obtained using the GUI:
 
 <p align="center">
-  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/demo%20step%203.png" width="500">
+  <img src="https://github.com/KhalilDMK/NNHyperTun_GA_WOC/blob/master/Images/demo%20step%203.png" width="550">
 </p>
